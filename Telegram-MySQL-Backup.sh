@@ -14,10 +14,6 @@
   #$ gunzip < [backupfile.sql.gz] | mysql -u [uname] -p[pass] [dbname]
 #==============================================================================
 
-#==============================================================================
-# CUSTOM SETTINGS
-#==============================================================================
-
 # directory to put the backup files
 BACKUP_DIR=./
 
@@ -43,10 +39,6 @@ CHAT_ID=YOUR_CHAT_ID
 
 # Current time in YYYY-MM-DD format
 DATE=$(date +%F)
-
-#==============================================================================
-# METHODS
-#==============================================================================
 
 function telegram_send_message() {
     curl -F chat_id="$1" -F text="$2" https://api.telegram.org/bot$BOT_TOKEN/sendMessage &> /dev/null
@@ -110,10 +102,6 @@ function backup_databases() {
         backup_database
     done
 }
-
-#==============================================================================
-# RUN SCRIPT
-#==============================================================================
 
 delete_old_backups
 backup_databases
